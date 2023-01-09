@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>图表统计</title>
+  <link rel="stylesheet" href="../assets/lib/bootstrap.css" />
+  <link rel="stylesheet" href="../assets/lib/main.css" />
+  <script src="../assets/lib/jquery.js"></script>
+  <script type="text/javascript" src="../assets/lib/echarts.min.js"></script>
+  <script src="../assets/js/echarts.min.js"></script>
+</head>
+<style>
+  .box1 {
+    width: 100%;
+    height: 400px;
+    background-color: #fff;
+    margin: 1rem 1rem;
+  }
+</style>
+
+<body>
+  <!-- 首页名称 -->
+  <div class="page-header">
+    <h1>大事件 <small>BreakingNew.com</small></h1>
+  </div>
+
+  <!-- 导航条 -->
+  <nav class="navbar navbar-default">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="#">关键词查询</a>
+      </div>
+
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <form class="navbar-form navbar-left">
+          <div class="form-group">
+            <input type="text" class="form-control" placeholder="请输入要查询的内容">
+          </div>
+          <button type="submit" class="btn btn-default">查询</button>
+        </form>
+      </div>
+    </div>
+  </nav>
+
+  <!-- 数据统计 -->
+  <div class="container-fluid">
+    <div class="row spannel_list">
+      <div class="col-sm-3 col-xs-6">
+        <div class="spannel">
+          <em>10015</em><span>篇</span>
+          <b>总文章数</b>
+        </div>
+      </div>
+      <div class="col-sm-3 col-xs-6">
+        <div class="spannel scolor01">
+          <em>123</em><span>篇</span>
+          <b>日新增文章数</b>
+        </div>
+      </div>
+      <div class="col-sm-3 col-xs-6">
+        <div class="spannel scolor02">
+          <em>35</em><span>条</span>
+          <b>评论总数</b>
+        </div>
+      </div>
+      <div class="col-sm-3 col-xs-6">
+        <div class="spannel scolor03">
+          <em>123</em><span>条</span>
+          <b>日新增评论数</b>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 折线图 -->
+  <div class="box1 w "></div>
+
+  <script>
+    // 折线图
+    var myChart = echarts.init(document.querySelector('.box1'));
+    var option = {
+      color: ['pink', 'blue', 'green', 'skyblue', 'red'],
+      title: {
+        text: ''
+      },
+      tooltip: {
+        trigger: 'axis'
+      },
+      legend: {
+        data: ['总文章数', '日新增文章数', '评论总数', '日新增评论数']
+      },
+      grid: {
+        left: '3%',
+        right: '3%',
+        bottom: '3%',
+        // 当刻度标签溢出的时候，grid 区域是否包含坐标轴的刻度标签。如果为true，则显示刻度标签
+        // 如果left right等设置为 0% 刻度标签就溢出了，此时决定是否显示刻度标签
+        containLabel: true
+      },
+      toolbox: {
+        feature: {
+          saveAsImage: {}
+        }
+      },
+      xAxis: {
+        type: 'category',
+        // 坐标轴两边留白策略 true，这时候刻度只是作为分隔线，标签和数据点都会在两个刻度之间的带(band)中间。
+        boundaryGap: false,
+        data: ['星期一', '星期二', '周三', '周四', '周五', '周六', '周日']
+      },
+      yAxis: {
+        type: 'value'
+      },
+      series: [
+        {
+          name: '总文章数',
+          // 图表类型是线形图
+          type: 'line',
+          data: [120, 132, 101, 134, 90, 230, 210]
+        },
+        {
+          name: '日新增文章数',
+          type: 'line',
+
+          data: [220, 182, 191, 234, 290, 330, 310]
+        },
+        {
+          name: '评论总数',
+          type: 'line',
+
+          data: [150, 232, 201, 154, 190, 330, 410]
+        },
+        {
+          name: '日新增评论数',
+          type: 'line',
+
+          data: [320, 332, 301, 334, 390, 330, 320]
+        }
+      ]
+    };
+    myChart.setOption(option);
+
+
+
+  </script>
+</body>
+
+</html>
